@@ -1,6 +1,8 @@
 package com.atguigu.mybatis.test;
 
 import com.atguigu.mybatis.mapper.UserMapper;
+import com.atguigu.mybatis.pojo.User;
+import com.atguigu.mybatis.utils.SqlSessionUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MyBatisTest {
 
@@ -38,5 +41,42 @@ public class MyBatisTest {
 
         //sqlSession.commit();
         System.out.println("结果："+result);
+    }
+
+    @Test
+    public void testUpdate(){
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        userMapper.updateUser();
+        sqlSession.close();
+        System.out.println("更新成功...");
+    }
+
+    @Test
+    public void testDelete(){
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        userMapper.deleteUser();
+        sqlSession.close();
+        System.out.println("删除成功...");
+    }
+
+    @Test
+    public void testGetUserById(){
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = userMapper.getUserById();
+        sqlSession.close();
+        System.out.println(user);
+    }
+
+    @Test
+    public void testGetAllUser(){
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<User> allUser = userMapper.getAllUser();
+        sqlSession.close();
+        allUser.forEach(System.out::println);
+        //System.out.println(allUser);
     }
 }
