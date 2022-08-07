@@ -15,7 +15,7 @@
     <properties resource="jdbc.properties"/>
 
     <typeAliases>
-        <package name="com.atguigu.mybatis.pojo"/>
+        <package name=""/>
     </typeAliases>
 
     <environments default="development">
@@ -32,6 +32,6 @@
 
     <!--引入mybatis的映射文件-->
     <mappers>
-        <package name="com.atguigu.mybatis.mapper"/>
+        <package name=""/>
     </mappers>
 </configuration>

@@ -8,6 +8,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Date:2022/6/27
+ * Author:ybc
+ * Description:
+ */
 public class SqlSessionUtil {
 
     public static SqlSession getSqlSession(){

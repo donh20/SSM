@@ -5,7 +5,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_parameter/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_helloworld/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/mybatis_helloworld/mybatis_parameter/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="jdk-8.0.131" project-jdk-type="JavaSDK">

@@ -13,70 +13,68 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * Date:2022/6/27
+ * Author:ybc
+ * Description:
+ */
 public class MyBatisTest {
 
     @Test
     public void testInsert() throws IOException {
         //获取核心配置文件的输入流
         InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-        //创建SqlSessionFactoryBuilder对象
+        //获取SqlSessionFactoryBuilder对象
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
-        //通过核心配置文件所对应的字节输入流创建工厂类SqlSessionFactory，生产SqlSession对象
+        //获取SqlSessionFactory对象
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);
-
-        //创建SqlSession对象，此时通过SqlSession对象所操作的sql都必须手动提交或回滚事务
+        //获取sql的会话对象SqlSession(不会自动提交事务)，是MyBatis提供的操作数据库的对象
         //SqlSession sqlSession = sqlSessionFactory.openSession();
-
-        //创建SqlSession对象，此时通过SqlSession对象所操作的sql都会自动提交
+        //获取sql的会话对象SqlSession(会自动提交事务)，是MyBatis提供的操作数据库的对象
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
-
-        //通过代理模式创建UserMapper接口的代理实现类对象
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        //调用UserMapper接口中的方法，就可以根据UserMapper的全类名匹配元素文件，通过调用的方法名匹配
-        //映射文件中的SQL标签，并执行标签中的SQL语句
-        int result = userMapper.insertUser();
-
-/*        //通过sql语句的唯一标识找到sql并执行,唯一标识是namespace.sqlId
-        int result = sqlSession.insert("com.atguigu.mybatis.mapper.UserMapper.insertUser");*/
-
-        //sqlSession.commit();
+        //获取UserMapper的代理实现类对象
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //调用mapper接口中的方法，实现添加用户信息的功能
+        int result = mapper.insertUser();
+        //提供sql以及的唯一标识找到sql并执行，唯一标识是namespace.sqlId
+        /*int result = sqlSession.insert("com.atguigu.mybatis.mapper.UserMapper.insertUser");*/
         System.out.println("结果："+result);
+        //提交事务
+        //sqlSession.commit();
+        //关闭SqlSession
+        sqlSession.close();
     }
 
     @Test
     public void testUpdate(){
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        userMapper.updateUser();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.updateUser();
         sqlSession.close();
-        System.out.println("更新成功...");
     }
 
     @Test
     public void testDelete(){
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        userMapper.deleteUser();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.deleteUser();
         sqlSession.close();
-        System.out.println("删除成功...");
     }
 
     @Test
     public void testGetUserById(){
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = userMapper.getUserById();
-        sqlSession.close();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = mapper.getUserById();
         System.out.println(user);
     }
 
     @Test
     public void testGetAllUser(){
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        List<User> allUser = userMapper.getAllUser();
-        sqlSession.close();
-        allUser.forEach(System.out::println);
-        //System.out.println(allUser);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> list = mapper.getAllUser();
+        list.forEach(System.out::println);
     }
+
 }
