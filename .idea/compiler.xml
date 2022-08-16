@@ -11,7 +11,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SSM" target="8" />
+      <module name="mybatis_helloworld" target="8" />
+      <module name="mybatis_parameter" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
