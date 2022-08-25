@@ -60,8 +60,8 @@ public interface SelectMapper {
      *  4={password=123, id=4, username=lisi}
      *  }
      */
-    //List<Map<String, Object>> getAllUserToMap();
+    List<Map<String, Object>> getAllUserToMap();
 
-    @MapKey("id")
-    Map<String, Object> getAllUserToMap();
+//    @MapKey("id")
+//    Map<String, Object> getAllUserToMap();
 }
