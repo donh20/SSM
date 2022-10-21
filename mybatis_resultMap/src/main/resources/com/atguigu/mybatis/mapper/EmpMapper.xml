@@ -42,13 +42,12 @@
         <result column="gender" property="gender"></result>
     </resultMap>
 
-
     <!--Emp getEmpByEmpId(@Param("empId") Integer empId);-->
-    <select id="getEmpByEmpId" resultMap="empResultMap">
+    <select id="getEmpByEmpIdOld" resultMap="empResultMap">
         select * from t_emp where emp_id = #{empId}
     </select>
 
-    <select id="getEmpByEmpIdOld" resultType="Emp">
+    <select id="getEmpByEmpId" resultType="Emp">
         select * from t_emp where emp_id = #{empId}
         <!--select emp_id empId,emp_name empName,age,gender from t_emp where emp_id = #{empId}-->
     </select>
@@ -80,6 +79,7 @@
     </resultMap>
     <!--Emp getEmpAndDeptByEmpId(@Param("empId") Integer empId);-->
     <select id="getEmpAndDeptByEmpId" resultMap="empAndDeptResultMapAsso">
+    <!--<select id="getEmpAndDeptByEmpId" resultMap="empAndDeptResultMap">-->
         select t_emp.*,t_dept.*
         from t_emp left join t_dept
             on t_emp.dept_id = t_dept.dept_id
@@ -102,7 +102,8 @@
         <association
             property="dept"
             select ="com.atguigu.mybatis.mapper.DeptMapper.getEmpAndDeptByStepTwo"
-            column="dept_id"></association>
+            column="dept_id">
+        </association>
     </resultMap>
     <select id="getEmpAndDeptByStepOne" resultMap="empAndDeptByStepResultMap">
         select * from t_emp where emp_id = #{empId}

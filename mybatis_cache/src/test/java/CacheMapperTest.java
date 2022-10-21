@@ -31,15 +31,15 @@ public class CacheMapperTest {
         System.out.println(emp1);
         //mapper1.insertEmp(new Emp(null,"zhangsan",25,"男"));
         //CacheMapper mapper = sqlSession1.getMapper(CacheMapper.class);
-        sqlSession1.clearCache();
-        Emp emp = mapper1.getEmpById(1);
-        System.out.println(emp);
+        //sqlSession1.clearCache();
+        Emp emp2 = mapper1.getEmpById(1);
+        System.out.println(emp2);
         sqlSession1.close();
 
 /*        SqlSession sqlSession2 = SqlSessionUtil.getSqlSession();
         CacheMapper mapper2 = sqlSession2.getMapper(CacheMapper.class);
-        Emp emp2 = mapper2.getEmpById(1);
-        System.out.println(emp2);
+        Emp emp = mapper2.getEmpById(1);
+        System.out.println(emp);
         sqlSession2.close();*/
     }
 

@@ -44,7 +44,7 @@ public class DynamicMapperTest {
     public void deleteInsertMoreEmp(){
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         DynamicSQLMapper mapper = sqlSession.getMapper(DynamicSQLMapper.class);
-        Integer[] empIds = new Integer[]{10,11};
+        Integer[] empIds = new Integer[]{13,14};
         mapper.deleteMoreEmp(empIds);
     }
 
