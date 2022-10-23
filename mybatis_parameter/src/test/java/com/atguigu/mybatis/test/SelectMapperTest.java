@@ -49,8 +49,10 @@ public class SelectMapperTest {
     public void testGetAllUserToMap(){
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         SelectMapper mapper = sqlSession.getMapper(SelectMapper.class);
-        List<Map<String, Object>> list = mapper.getAllUserToMap();
-        list.forEach(System.out::println);
+        //List<Map<String, Object>> list = mapper.getAllUserToMap();
+
+        //list.forEach(System.out::println);
+
         /**
          * {
          * 1={password=123456, gender=男, id=1, age=23, email=12345@qq.com, username=admin},
@@ -59,8 +61,8 @@ public class SelectMapperTest {
          * 4={password=123, id=4, username=lisi}
          * }
          */
-        //Map<String, Object> map = mapper.getAllUserToMap();
-        //System.out.println(map);
+        Map<String, Object> map = mapper.getAllUserToMap();
+        System.out.println(map);
     }
 
 
