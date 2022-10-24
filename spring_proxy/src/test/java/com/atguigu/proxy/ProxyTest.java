@@ -27,6 +27,5 @@ public class ProxyTest {
         ProxyFactory proxyFactory = new ProxyFactory(new CalculatorImpl());
         Calculator proxy = (Calculator) proxyFactory.getProxy();
         proxy.div(1,0);
-
     }
 }
