@@ -8,8 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring_helloworld" />
         <module name="mybatis_resultMap" />
-        <module name="spring_transaction" />
         <module name="mybatis_helloworld" />
+        <module name="spring_mvc_helloworld" />
+        <module name="spring_transaction" />
         <module name="mybatis_parameter" />
         <module name="mybatis_mbg" />
         <module name="spring_proxy" />
@@ -31,6 +32,7 @@
       <module name="spring_helloworld" target="8" />
       <module name="spring_ioc_annotation" target="8" />
       <module name="spring_ioc_xml" target="8" />
+      <module name="spring_mvc_helloworld" target="8" />
       <module name="spring_proxy" target="8" />
       <module name="spring_transaction" target="8" />
     </bytecodeTargetLevel>
