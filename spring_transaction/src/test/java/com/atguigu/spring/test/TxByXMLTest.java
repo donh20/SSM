@@ -1,13 +1,11 @@
 package com.atguigu.spring.test;
 
 import com.atguigu.spring.controller.BookController;
-import com.atguigu.spring.dao.BookDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 
 /**
  * 声明式事务的配置步骤：
@@ -18,20 +16,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * 1、标识在方法上
  * 2、标识在类上，则类中所有的方法都会被事务管理
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:tx-annotation.xml")
-public class TxByAnnotationTest {
+@ContextConfiguration("classpath:tx-xml.xml")
+public class TxByXMLTest {
+
     @Autowired
     private BookController bookController;
 
-    @Autowired
-    private BookDao bookDao;
-
     @Test
-    public void testBuyBook(){
+    public void testByXMLTest(){
         bookController.buyBook(1,1);
-        //bookController.checkout(1,new Integer[]{1,2});
     }
-
 }
