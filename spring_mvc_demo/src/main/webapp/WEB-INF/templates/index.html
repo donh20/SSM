@@ -32,5 +32,13 @@
     密码：<input type="password" name="password"><br>
     <input type="submit" value="pojo"><br>
 </form>
+<hr>
+<a th:href="@{/test/mav}">测试通过ModelAndView向请求域共享数据</a><br>
+<a th:href="@{/test/model}">测试通过Model向请求域共享数据</a><br>
+<a th:href="@{/test/modelMap}">测试通过ModelMap向请求域共享数据</a><br>
+<a th:href="@{/test/map}">测试通过map向请求域共享数据</a><br>
+<a th:href="@{/test/session}">测试向会话域共享数据</a><br>
+<a th:href="@{/test/application}">测试向应用域共享数据</a><br>
+<hr>
 </body>
 </html>
