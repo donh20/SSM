@@ -43,7 +43,7 @@ public class ScopeController {
     public String testModel(Model model){
         //org.springframework.validation.support.BindingAwareModelMap
         System.out.println(model.getClass().getName());
-        model.addAttribute("testRequestScope","hello, model");
+        model.addAttribute("testRequestScope","hello, Model");
         return "success";
     }
 
@@ -65,15 +65,14 @@ public class ScopeController {
 
     @RequestMapping("/test/session")
     public String testSession(HttpSession httpSession){
-        httpSession.setAttribute("testSessionScope","hello, session");
+        httpSession.setAttribute("testSessionScope","hello, Session");
         return "success";
     }
 
     @RequestMapping("/test/application")
     public String testApplication(HttpSession httpSession){
         ServletContext servletContext = httpSession.getServletContext();
-        servletContext.setAttribute("testApplicationScope","hello, session");
-
+        servletContext.setAttribute("testApplicationScope","hello, Application");
         return "success";
     }
 }
