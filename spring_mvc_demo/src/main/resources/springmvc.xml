@@ -31,11 +31,9 @@
     <!--开启mvc的注解驱动-->
     <mvc:annotation-driven/>
     <!--
-     视图控制器：为当前的请求直接设置视图名称实现页面跳转
+     视图控制器：为当前的请求直接设置视图名称实现页面跳转（当访问的请求是"/"时，直接访问index视图名称）
      若设置视图控制器，则只有视图控制器所设置的请求会被处理，其他的请求将全部404
      此时必须在配置一个标签：<mvc:annotation-driven />
-     当访问的请求是"/"时，直接访问index视图名称
-     注意：只有视图控制器的请求才会被处理，如果想要处理其它请求，需要添加mvc annotation-driven
     -->
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
 </beans>
