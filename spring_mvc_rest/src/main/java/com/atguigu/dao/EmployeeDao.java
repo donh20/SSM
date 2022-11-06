@@ -28,12 +28,18 @@ public class EmployeeDao {
         return employees.get(id);
     }
 
-    public void delete(Integer id){
-        employees.remove(id);
+    public void save(Employee employee){
+        if(employee.getId() == null){
+            employee.setId(initId++);
+        }
+        employees.put(employee.getId(), employee);
     }
 
     public Collection<Employee> getAll(){
         return employees.values();
     }
 
+    public void delete(Integer id){
+        employees.remove(id);
+    }
 }

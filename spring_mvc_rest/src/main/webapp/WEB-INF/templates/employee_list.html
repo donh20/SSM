@@ -15,7 +15,7 @@
         <th>lastName</th>
         <th>email</th>
         <th>gender</th>
-        <th>options</th>
+        <th>options(<a th:href="@{/to/add}">add</a>)</th>
     </tr>
     <tr th:each="employee:${allEmployee}">
         <td th:text="${employee.id}"></td>

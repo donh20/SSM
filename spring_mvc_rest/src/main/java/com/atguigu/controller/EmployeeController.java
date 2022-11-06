@@ -32,4 +32,13 @@ public class EmployeeController {
         return "employee_list";
     }
 
+    @RequestMapping(value = "/employee",method = RequestMethod.POST)
+    public String addEmployee(Employee employee){
+        //保存员工信息
+        employeeDao.save(employee);
+        //如果用转发,则地址还是save的地址
+        // 建议使用重定向列表功能,/employe,相当于让浏览器再访问一次重定向的地址,这样可以再刷新一次
+        return "redirect:/employee";
+    }
+
 }
