@@ -12,7 +12,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * ResponseEntity:可以作为控制器方法的返回值，表示响应到浏览器的完整的响应报文
@@ -61,7 +63,7 @@ public class FileUpAndDownController {
      * 1. 配置文件上传解析器
      * <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
      * </bean>
-     * 2. pom文件添加相关的jar包
+     * 2. pom文件引入相关的jar包
      * 3. 配置文件解析器的bean id="multipartResolver"
      *
      * @param session
@@ -71,6 +73,10 @@ public class FileUpAndDownController {
     public String testUp(MultipartFile photo,HttpSession session) throws IOException {
         //获取上传的文件的文件名
         String filename = photo.getOriginalFilename();
+        String suffixString = filename.substring(filename.lastIndexOf("."));
+        //获取UUID
+        String uuid = UUID.randomUUID().toString();
+        filename = uuid + suffixString;
         System.out.println(filename);
         //没有专门的文件服务器,直接上传到tomcat服务器,也就是target下的war包下面(spring_mvc_ajax1.0-SNAPSHOT)
         //获取ServletContext对象
