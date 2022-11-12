@@ -84,8 +84,7 @@ public class FileUpAndDownController {
         //获取当前工程的真实路径
         String photopath = servletContext.getRealPath("photo");
         //创建photoPath所对应的file对象
-        File file = new File(photopath);
-        //判断file所对应的目录是否存在
+        File file = new File(photopath);     //判断file所对应的目录是否存在
         if(!file.exists()) {
             file.mkdir();
         }
