@@ -43,7 +43,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 传统：/deleteUser?id=1
  * rest：/user/delete/1
  * 需要在@RequestMapping注解的value属性中所设置的路径中，使用{xxx}的方式表示路径中的数据
- * 在通过@PathVariable注解，将占位符所标识的值和控制器方法的形参进行绑定
+ * 再通过@PathVariable注解，将占位符所标识的值和控制器方法的形参进行绑定
  *
  */
 
