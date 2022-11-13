@@ -17,9 +17,32 @@ import javax.servlet.http.HttpServletResponse;
  * preHandle()按照配置的顺序执行，而postHandle()和afterCompletion()按照配置的反序执行
  *
  * 若拦截器中有某个拦截器的preHandle()返回了false
- * 拦截器的preHandle()返回false和它之前的拦截器的preHandle()都会执行
- * 所有的拦截器的postHandle()都不执行
- * 拦截器的preHandle()返回false之前的拦截器的afterCompletion()会执行
+ * 拦截器的preHandle()返回false和它之前的拦截器的preHandle()会顺序执行
+ * "所有"的拦截器的postHandle()都不执行
+ * 拦截器的preHandle()返回false"之前"的拦截器的afterCompletion()会倒序执行
+ *
+ * 注意: HandlerExecutionChain的handler是ParameterizableViewController [view="index"]
+ * 这是SpringMVC在解析视图控制器的时候自己创建的方法,我们添加两个拦截器后,一共有四个拦截器
+ * 1. AbstractUrlHandlerMapping$Path$ExposingHandlerInterceptor
+ *  专门处理视图控制器所对应的请求
+ * 2. ConversionServiceExposingInterceptor
+ *  springMVC自带的
+ * 3. FirstInterceptor
+ * 4. SecondInterceptor
+ *
+ * 加载首页完成后,点击"测试拦截器",这个时候再进行debug
+ *
+ * 条件:firstInterceptor返回true,secondInterceptor返回false
+ * FirstInterceptor--->preHandle
+ * SecondInterceptor--->preHandle
+ * FirstInterceptor--->afterCompletion
+ *
+ * 条件:firstInterceptor返回true,secondInterceptor返回true,thirdInterceptor返回false
+ * FirstInterceptor--->preHandle
+ * SecondInterceptor--->preHandle
+ * ThirdInterceptor--->preHandle
+ * SecondInterceptor--->afterCompletion
+ * FirstInterceptor--->afterCompletion
  */
 @Component
 public class FirstInterceptor implements HandlerInterceptor {

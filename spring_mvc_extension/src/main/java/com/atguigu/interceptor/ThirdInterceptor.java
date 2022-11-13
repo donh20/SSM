@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-public class SecondInterceptor implements HandlerInterceptor {
+public class ThirdInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("SecondInterceptor--->preHandle");
-        return true;
+        System.out.println("ThirdInterceptor--->preHandle");
+        return false;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("SecondInterceptor--->postHandle");
+        System.out.println("ThirdInterceptor--->postHandle");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("SecondInterceptor--->afterCompletion");
+        System.out.println("ThirdInterceptor--->afterCompletion");
     }
 }
