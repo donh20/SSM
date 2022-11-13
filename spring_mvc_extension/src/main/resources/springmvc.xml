@@ -69,4 +69,20 @@
         </mvc:interceptor>-->
     </mvc:interceptors>
 
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--key设置要处理的异常,value设置出现该异常是要跳转的页面所对应的逻辑视图-->
+                <prop key="java.lang.ArithmeticException">error</prop>
+            </props>
+        </property>
+        <!--
+            SimpleMappingExceptionResolver里重写的doResolveException方法返回的是一个modelAndView
+            modelAndView两个功能:
+            1. 往请求域共享数据
+            2. 跳转
+        -->
+        <!--设置共享在请求域中的异常信息的属性名,页面直接通过ex来展示异常信息-->
+        <!--<property name="exceptionAttribute" value="ex"/>-->
+    </bean>
 </beans>
