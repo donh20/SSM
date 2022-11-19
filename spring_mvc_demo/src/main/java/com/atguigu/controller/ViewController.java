@@ -24,9 +24,10 @@ public class ViewController {
     }
 
     /**
-     * SpringMVC中默认的转发视图是InternalResourceView
-     * 当控制器方法中所设置的视图名称以forward:为前缀时,创建InternalResourceView视图，此时的视图名称不会被SpringMVC配置文件中所配置的
-     * 视图解析器解析，而是会将前缀"forward:"去掉,剩余部分作为最终路径通过转发的方式实现跳转
+     * SpringMVC中默认的"转发"视图是InternalResourceView
+     * SpringMVC中创建转发视图的情况：
+     * 当控制器方法中所设置的视图名称以forward:为前缀时,创建InternalResourceView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析
+     * 而是会将前缀"forward:"去掉,剩余部分作为最终路径通过转发的方式实现跳转
      * 例如"forward:/","forward:/employee","forward:/test/model"
      *
      * @return
@@ -39,7 +40,10 @@ public class ViewController {
 
     /**
      * 重定向视图：
-     * SpringMVC默认的视图就是重定向视图RedirectView
+     * SpringMVC中默认的重定向视图是RedirectView
+     * 当控制器方法中所设置的视图名称以"redirect:"为前缀时，创建RedirectView视图，此时的视图名称不会被
+     * SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀"redirect:"去掉，剩余部分作为最终路径通过重定
+     * 向的方式实现跳转
      * @return
      */
     @RequestMapping("/test/view/redirect")

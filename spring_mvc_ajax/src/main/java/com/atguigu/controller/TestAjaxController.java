@@ -20,6 +20,7 @@ import java.util.Map;
  * a>导入jackson的依赖
  * b>在SpringMVC的配置文件中设置<mvc:annotation-driven />
  * c>在处理请求的控制器方法的形参位置,直接设置json格式的请求参数要转换的java类型的形参,使用@RequestBody注解标识即可
+ *
  * 3、@ResponseBody：将所标识的控制器方法的返回值作为响应报文的响应体响应到浏览器
  * 4、使用@ResponseBody注解响应浏览器json格式的数据
  * a>导入jackson的依赖

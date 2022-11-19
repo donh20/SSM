@@ -10,8 +10,11 @@
         <module name="mybatis_resultMap" />
         <module name="spring_mvc_demo" />
         <module name="mybatis_helloworld" />
+        <module name="spring_listener" />
         <module name="spring_mvc_ajax" />
+        <module name="ssm" />
         <module name="spring_mvc_helloworld" />
+        <module name="spring_mvc_annotation" />
         <module name="spring_mvc_rest" />
         <module name="spring_transaction" />
         <module name="spring_mvc_extension" />
@@ -36,13 +39,16 @@
       <module name="spring_helloworld" target="8" />
       <module name="spring_ioc_annotation" target="8" />
       <module name="spring_ioc_xml" target="8" />
+      <module name="spring_listener" target="8" />
       <module name="spring_mvc_ajax" target="8" />
+      <module name="spring_mvc_annotation" target="8" />
       <module name="spring_mvc_demo" target="8" />
       <module name="spring_mvc_extension" target="8" />
       <module name="spring_mvc_helloworld" target="8" />
       <module name="spring_mvc_rest" target="8" />
       <module name="spring_proxy" target="8" />
       <module name="spring_transaction" target="8" />
+      <module name="ssm" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -6,9 +6,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--扫描控制层组件-->
-    <context:component-scan base-package="com.atguigu"></context:component-scan>
+    <context:component-scan base-package="com.atguigu.ssm.controller"></context:component-scan>
 
-    <!-- 配置Thymeleaf视图解析器 -->
+    <!--配置视图解析器-->
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="order" value="1"/>
         <property name="characterEncoding" value="UTF-8"/>
@@ -28,25 +28,26 @@
         </property>
     </bean>
 
-    <!--
-        配置默认的servlet处理静态资源
-        当前工程的web.xml配置的前端控制器DispatcherServlet的url-pattern是/
-        tomcat的web.xml配置的DefaultServlet的url-pattern也是/
-        此时,浏览器发送的请求优先被DispatcherServlet进行处理,但是DispatcherServlet无法处理静态资源
-        若配置了<mvc:default-servlet-handler />,此时浏览器发送的所有请求都会被DefaultServlet处理
-        若配置了<mvc:default-servlet-handler />和<mvc:annotation-driver />
-        浏览器发送的请求会先被DispatcherServlet处理,无法处理再交给DefaultServlet处理
-
-        理解为: 视图控制器直接处理配置好的请求路径,其他没配置的请求交给DispatcherServlet,遇到DispatcherServlet无法处理的静态资源就交给DefaultServlet处理
-    -->
+    <!--配置默认的servlet处理静态资源-->
     <mvc:default-servlet-handler/>
-    <!--开启mvc的注解驱动-->
+
+    <!--开启mvc注解驱动-->
     <mvc:annotation-driven/>
-    <!--
-        视图控制器：为当前的请求直接设置视图名称实现页面跳转（当访问的请求是"/"时，直接访问index视图名称）
-        若设置视图控制器，则只有视图控制器所设置的请求会被处理，其他的请求将全部404
-        此时必须再配置一个标签：<mvc:annotation-driven />
-    -->
+
+    <!--配置视图控制器-->
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
-    <mvc:view-controller path="/to/add" view-name="employee_add"></mvc:view-controller>
+
+    <!--
+        如果只配置view-controller,那么只有视图控制器生效,即只有/路径被解析,其他控制层请求映射都无法处理
+        增加mvc:annotation-driven才可以处理其它请求
+
+        如果只配置默认servlet处理器<mvc:default-servlet-handler/>,此时浏览器向服务器发送的全部请求都会被默认的处理器处理
+
+        三个都配的话,请求被DispatcherServlet处理,如果DispatcherServlet处理不了,比如一些服务器静态资源,才会被默认的servlet处理器解析
+    -->
+
+    <!--配置文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>
 </beans>
