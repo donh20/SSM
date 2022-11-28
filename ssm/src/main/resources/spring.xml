@@ -12,6 +12,29 @@
     <!--引入jdbc.properties-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
+    <!--
+        每次操作MyBatis都要加载核心配置文件都要:
+        1. 获取SqlSessionFactoryBuilder
+        2. 创建SqlSessionFactory
+        3. 通过SqlSessionFactory创建SqlSession对象
+        4. 创建mapper接口的对象
+        5. 调用实际执行的方法
+
+        按照以前的访问方式,应该是:
+        1. Controller调用Service
+        2. 然后Service获取SqlSession对象
+        3. 还需要获取Mapper接口的代理实现类对象
+        4. 再调用mapper接口中的方法,执行sql语句
+
+        现在:SqlSession或者SqlSessionFactory就是对象,那么就可以交给Spring来管理
+        Spring整合MyBatis
+
+        有了SqlSessionFactory以后就可以直接拿来用了:
+        在service里直接访问SqlSessionFactory对象,通过openSession获取SqlSession对象
+        通过SqlSession获取mapper接口对象
+        然后直接调用方法
+
+    -->
     <!--配置数据源-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="${jdbc.driver}"></property>
@@ -20,6 +43,50 @@
         <property name="password" value="${jdbc.password}"></property>
     </bean>
 
+    <!--
+        配置SqlSessionFactoryBean
+        有mybatis-spring这个jar包提供
+        这个FactoryBean是一个工厂bean,工厂bean的特殊之处是:当我们把这个bean配置到IOC容器后(实例化这个bean后)
+        可以直接(在Spring的IOC中)获取这个工厂bean提供的对象,而不是FactoryBean本身这个对象
+        即省略获取工厂的步骤,直接获取它所提供的对象SqlSessionFactory
+        (可以打开SqlSessionFactoryBean.java源代码,查看getObject方法)
+    -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--设置MyBatis核心配置文件的路径-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!--设置数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--设置类型别名所对应的包,pojo包下所有的实体类都有别名-->
+        <property name="typeAliasesPackage" value="com.atguigu.ssm.pojo"></property>
+        <!--
+            设置映射文件的路径
+            如果没有配置MapperScannerConfigurer
+                那么mapperLocations一定要设置
+            如果配置了MapperScannerConfigurer
+                此时已经设置了mapper接口所在的包(com.atguigu.ssm.mapper)
+                也设置了映射文件所在的包(com/atguigu/ssm/mapper)
+                如果此时,映射文件的包和mapper接口的包不一致,则需要设置mapperLocations
+                (正常来讲,两个位置是一样的,因此不需要设置)
+        -->
+        <!--<property name="mapperLocations" value="classpath:mappers/*.xml"></property>-->
+
+        <!--配置分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
+    </bean>
+
+    <!--
+        配置mapper接口扫描
+        将指定的包下面所有的mapper接口
+        通过SqlSessionFactory提供的SqlSession对象创建代理实现类对象,并将这些对象交给IOC容器管理
+        配置MapperScannerConfigurer之后,可以在Service类中直接装配mapper接口对象
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.atguigu.ssm.mapper"></property>
+    </bean>
 
 
 </beans>

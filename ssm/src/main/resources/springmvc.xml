@@ -40,7 +40,7 @@
     <!--
         如果只配置view-controller,那么只有视图控制器生效,即只有/路径被解析,其他控制层请求映射都无法处理
         增加mvc:annotation-driven才可以处理其它请求
-
+        配谁就用谁:
         如果只配置默认servlet处理器<mvc:default-servlet-handler/>,此时浏览器向服务器发送的全部请求都会被默认的处理器处理
 
         三个都配的话,请求被DispatcherServlet处理,如果DispatcherServlet处理不了,比如一些服务器静态资源,才会被默认的servlet处理器解析
@@ -49,5 +49,6 @@
     <!--配置文件上传解析器-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
+    <!--异常处理器-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>
 </beans>
