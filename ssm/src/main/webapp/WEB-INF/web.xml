@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <!--
+        web.xml需要配置什么?
+
         配置两个过滤器:CharacterEncodingFilter,HiddenHttpMethodFilter
         一个前端控制器:DispatcherServlet
         Spring的监听器:ContextLoaderListener以及为spring配置位置和名称的标签context-param
@@ -62,7 +64,10 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!--设置Spring配置文件自定义的位置和名称-->
+    <!--
+        设置Spring配置文件自定义的位置和名称
+        如果不配置的话,默认应该在web-inf下,名字叫applicationContext.xml(spring的默认配置文件)
+    -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>

@@ -29,26 +29,26 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mybatis_cache" target="8" />
-      <module name="mybatis_dynamicSQL" target="8" />
+      <module name="mybatis_cache" target="1.8" />
+      <module name="mybatis_dynamicSQL" target="1.8" />
       <module name="mybatis_helloworld" target="8" />
-      <module name="mybatis_mbg" target="8" />
+      <module name="mybatis_mbg" target="1.8" />
       <module name="mybatis_parameter" target="7" />
-      <module name="mybatis_resultMap" target="8" />
-      <module name="spring_aop" target="8" />
-      <module name="spring_helloworld" target="8" />
-      <module name="spring_ioc_annotation" target="8" />
-      <module name="spring_ioc_xml" target="8" />
-      <module name="spring_listener" target="8" />
-      <module name="spring_mvc_ajax" target="8" />
-      <module name="spring_mvc_annotation" target="8" />
-      <module name="spring_mvc_demo" target="8" />
-      <module name="spring_mvc_extension" target="8" />
-      <module name="spring_mvc_helloworld" target="8" />
-      <module name="spring_mvc_rest" target="8" />
-      <module name="spring_proxy" target="8" />
-      <module name="spring_transaction" target="8" />
-      <module name="ssm" target="1.5" />
+      <module name="mybatis_resultMap" target="1.8" />
+      <module name="spring_aop" target="1.8" />
+      <module name="spring_helloworld" target="1.8" />
+      <module name="spring_ioc_annotation" target="1.8" />
+      <module name="spring_ioc_xml" target="1.8" />
+      <module name="spring_listener" target="1.8" />
+      <module name="spring_mvc_ajax" target="1.8" />
+      <module name="spring_mvc_annotation" target="1.8" />
+      <module name="spring_mvc_demo" target="1.8" />
+      <module name="spring_mvc_extension" target="1.8" />
+      <module name="spring_mvc_helloworld" target="1.8" />
+      <module name="spring_mvc_rest" target="1.8" />
+      <module name="spring_proxy" target="1.8" />
+      <module name="spring_transaction" target="1.8" />
+      <module name="ssm" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

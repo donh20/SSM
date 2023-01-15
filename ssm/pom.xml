@@ -36,6 +36,9 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!--
+            事务管理器在spring-jdbc
+        -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -94,7 +97,7 @@
             <artifactId>pagehelper</artifactId>
             <version>5.2.0</version>
         </dependency>
-        <!-- 日志 -->
+        <!-- 日志 slf4j的实现-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

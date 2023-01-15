@@ -44,6 +44,11 @@
         如果只配置默认servlet处理器<mvc:default-servlet-handler/>,此时浏览器向服务器发送的全部请求都会被默认的处理器处理
 
         三个都配的话,请求被DispatcherServlet处理,如果DispatcherServlet处理不了,比如一些服务器静态资源,才会被默认的servlet处理器解析
+
+        简单理解为:
+        1. 视图控制器直接处理配置好的请求路径(优先级最高)
+        2. 其他没配置的请求交给DispatcherServlet(其次丢给框架)
+        3. 遇到DispatcherServlet无法处理的静态资源就交给DefaultServlet处理(搞不定就交给tomcat)
     -->
 
     <!--配置文件上传解析器-->
