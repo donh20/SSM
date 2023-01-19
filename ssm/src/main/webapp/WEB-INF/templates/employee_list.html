@@ -18,7 +18,7 @@
         <th>邮箱</th>
         <th>操作</th>
     </tr>
-    <tr th:each="employee,status: ${list}">
+    <tr th:each="employee,status: ${page.list}">
         <td th:text="${status.count}"></td>
         <td th:text="${employee.empName}"></td>
         <td th:text="${employee.age}"></td>
