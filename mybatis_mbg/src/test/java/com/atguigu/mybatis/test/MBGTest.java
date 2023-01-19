@@ -31,7 +31,7 @@ public class MBGTest {
 //        example.createCriteria().andGenderEqualTo("男");
 //        List<Emp> list = mapper.selectByExample(example);
 //        list.forEach(System.out::println);
-        Emp emp = new Emp(1, "小黑", null, "女");
+        Emp emp = new Emp(2, "小黑", null, "女");
 
         Emp before = mapper.selectByPrimaryKey(1);
         System.out.println(before);

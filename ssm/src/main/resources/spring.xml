@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--扫描组件(除控制层)-->
     <context:component-scan base-package="com.atguigu.ssm">
@@ -42,6 +42,26 @@
         <property name="username" value="${jdbc.username}"></property>
         <property name="password" value="${jdbc.password}"></property>
     </bean>
+
+    <!--
+        配置事务管理器
+        配置声明式事务的两种方式:
+        1. 基于注解(常用，两个标签：1. 配置事务管理器，2. 开启事务注解驱动）
+        2. 基于xml
+        理解：事务管理器是一个切面，要把通知作用在连接点
+        连接点就是执行过程中能够插入一个切面的点
+        连接点可以是调用方法时、抛出异常时、甚至修改字段时，切面代码可以利用这些点插入到应用的正规流程中
+    -->
+    <!--注意，默认的id就叫transactionManager，如果叫这个名字的话可以不配置，但是建议还是配置出来-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--
+        开启事务的注解驱动
+        将使用注解@Transactional标识的方法或类中所有的方法进行事务管理
+    -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--
         配置SqlSessionFactoryBean

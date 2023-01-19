@@ -19,38 +19,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--
-    Spring的IOC容器一定是提前创建好的,所以才能直接拿来使用(自动注入)
-    而前端控制器初始化之前会经过 监听器和过滤器 这里使用的是监听器
-    不放在过滤器中的原因:
-    1. 因为过滤器每次遇到请求都会执行初始化-处理-销毁，就会每次请求都会加载配置文件，完全没必要。
-    2. 一定不能为了实现一个功能就忽略了最原始的意义
-
-    监听器代码要在springmvc的ioc容器创建前，创建spring的ioc容器,这个时候DispatcherServlet初始化的时候就可以直接用spring的ioc容器了
-
-    执行流程:
-    tomcat服务器启动—>监听器—>diapatcherservlet初始化;
-    diapatcherservlet初始化时创建springmvc的ioc，所以在监听器中创建spring的ioc容器
-
-    三大监听器:
-    1. ServletContextListener，监听ServletContext的状态
-    2. HttpSessionListener 监听HttpSession状态
-    3. HttpSessionAttributeListener 监听HttpSession状态
-    我们要做的:在服务器启动的时候加载SpringIOC容器
-
-    源码:
-    ContextLoaderListener实现ServletContextListener接口
-    initWebApplicationContext
-        createWebApplicationContext 创建Web IOC容器
-        servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context) 然后放在最大的域对象里
-    -->
-    <!--
-    测试ContextLoaderListener
-    如果注释掉listener,启动后则会报错
-        No qualifying bean of type 'com.atguigu.service.HelloService' available
-    因为spring的ioc没有被初始化
-    helloService无法被helloController访问
-    -->
     <listener>
         <!--在服务器启动时加载Spring的配置文件-->
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
