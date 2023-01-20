@@ -24,4 +24,17 @@ public interface EmployeeService {
      * @param id
      */
     void deleteEmployeeById(Integer id);
+
+    /**
+     * 根据id获取员工信息*
+     * @param id
+     * @return
+     */
+    Employee getEmployeeById(Integer id);
+
+    /**
+     * 更新员工信息*
+     * @param employee
+     */
+    void saveEmployee(Employee employee);
 }

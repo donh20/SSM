@@ -28,7 +28,8 @@
             <td>
                 <!--<a href="">删除</a>-->
                 <a @click="deleteEmployee()" th:href="@{'/employee/page/'+${employee.empId}}">删除</a>
-                <a href="">修改</a>
+                <!--<a href="">修改</a>-->
+                <a th:href="@{'/employee/'+${employee.empId}}">修改</a>
             </td>
         </tr>
     </table>

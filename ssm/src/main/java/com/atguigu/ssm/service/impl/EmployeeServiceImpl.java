@@ -5,7 +5,6 @@ import com.atguigu.ssm.pojo.Employee;
 import com.atguigu.ssm.service.EmployeeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,5 +39,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployeeById(Integer id) {
         employeeMapper.deleteEmployeeById(id);
+    }
+
+    @Override
+    public Employee getEmployeeById(Integer id) {
+        Employee employee = employeeMapper.getEmployeeById(id);
+        return employee;
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        System.out.println(employee);
+        employeeMapper.saveEmployee(employee);
     }
 }
