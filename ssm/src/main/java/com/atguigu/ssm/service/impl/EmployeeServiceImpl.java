@@ -36,4 +36,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageInfo<Employee> page = new PageInfo<>(list, 5);
         return page;
     }
+
+    @Override
+    public void deleteEmployeeById(Integer id) {
+        employeeMapper.deleteEmployeeById(id);
+    }
 }

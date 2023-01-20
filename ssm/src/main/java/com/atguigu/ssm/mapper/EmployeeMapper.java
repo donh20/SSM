@@ -12,4 +12,11 @@ public interface EmployeeMapper {
      * @return
      */
     List<Employee> getAllEmployee();
+
+    /**
+     * 根据id删除员工*
+     * @param id
+     */
+    void deleteEmployeeById(Integer id);
+
 }

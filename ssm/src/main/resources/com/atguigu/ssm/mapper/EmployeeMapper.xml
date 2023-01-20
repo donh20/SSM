@@ -3,9 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.ssm.mapper.EmployeeMapper">
+    
     <!--List<Employee> getAllEmployee();-->
     <!--这里能够用别名，是因为spring配置文件里有typeAliasesPackage属性-->
     <select id="getAllEmployee" resultType="employee">
         select * from t_emp
     </select>
+
+    <!--void deleteEmployeeById(Integer id)-->
+    <delete id="deleteEmployeeById">
+        delete from t_emp where emp_id = #{id}
+    </delete>
 </mapper>
